@@ -6,6 +6,9 @@ header {
     color: teal;
 }
 
-table {
-    border: 1px black solid;
-}
+
+table, td, th {
+    border: solid 1px black;
+    border-collapse: collapse;
+    padding: 10px;
+  }
