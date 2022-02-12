@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 // from the server/public folder
 app.use(express.static('server/public'));
 
-// Setup the toDo router
+// Setup the tasks router
 // to respond to requests from the `/tasks` URL
 let router = require('./routes/router.js');
 app.use('/tasks', router);
