@@ -1,8 +1,7 @@
 $(function() {
-    console.log("jquery is setup")
+    console.log("jquery is setup");
+    getTasks();
 });
-
-
 
 // get tasks from the server
 function getTasks() {
@@ -13,21 +12,20 @@ function getTasks() {
     }).then(function (response) {
         console.log("GET /tasks response", response);
         // append data to the DOM
-        // for (let i = 0; i < response.length; i++) {
-        //     $('#songsTableBody').append(`
-        //         <tr data-id=${response[i].id}>
-        //             <td>${response[i].artist}</td>
-        //             <td>${response[i].track}</td>
-        //             <td>${response[i].rank}
-        //                 <button class="btn-vote">UP</button>
-        //                 <button class="btn-vote">DOWN</button>
-        //             </td>
-        //             <td>${response[i].published}</td>
-        //             <td>
-        //                 <button class="btn-delete" data-id=${response[i].id}>Delete</button>
-        //             </td>
-        //         </tr>
-        //     `);
-        // }
+        for (let i = 0; i < response.length; i++) {
+            // turn date into readable format
+            let date = new Date(response[i].due);
+            let formattedDate = date.toLocaleDateString();
+            $('#tasksTable').append(`
+                <tr data-id=${response[i].id}>
+                    <td>${response[i].task}</td>
+                    <td>${response[i].owner}</td>
+                    <td>${formattedDate}</td>
+                    <td>
+                        <button class="btn-delete" data-id=${response[i].id}>Delete</button>
+                    </td>
+                </tr>
+            `);
+        }
     });
 }
