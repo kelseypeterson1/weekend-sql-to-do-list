@@ -11,9 +11,9 @@ app.use(bodyParser.json());
 app.use(express.static('server/public'));
 
 // Setup the toDo router
-// to respond to requests from the `/songs` URL
+// to respond to requests from the `/tasks` URL
 let router = require('./routes/router.js');
-app.use('/toDo', router);
+app.use('/tasks', router);
 
 
 // Start express
