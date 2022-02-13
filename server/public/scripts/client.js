@@ -7,6 +7,7 @@ function readyNow() {
     getTasks();
     $('#btn-submit').on('click', postTask);
     $('#tasksTable').on('click', '.btn-complete', completeTask);
+    $('#tasksTable').on('click', '.btn-delete', deleteTask);
 };
 
 // send new task to server based on user input
@@ -62,6 +63,7 @@ function getTasks() {
     });
 }
 
+// 'complete' button will change status of task in database through the server
 function completeTask() {
     let id = $(this).closest('tr').data().id
     console.log(id);
@@ -76,5 +78,23 @@ function completeTask() {
         getTasks();
     }).catch(function(err){
         console.log(err);
+    })
+}
+
+// 'delete' button will remove task from database through the server
+function deleteTask() {
+    let id = $(this).closest('tr').data().id
+    console.log(id);
+
+    $.ajax({
+        method: 'DELETE',
+        url: `/tasks/${id}`
+    })
+    .then(function(response) {
+        console.log('Task deleted');
+        getTasks();
+    })
+    .catch(function(error) {
+        console.log('Error deleting task', error);
     })
 }
