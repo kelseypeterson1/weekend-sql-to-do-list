@@ -30,7 +30,7 @@ function postTask() {
 
 // get tasks from the server
 function getTasks() {
-    $("#tasksTableBody").empty();
+    $("#tasksTable").empty();
     $.ajax({
         type: 'GET',
         url: `/tasks`
