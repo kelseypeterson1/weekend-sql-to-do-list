@@ -1,9 +1,20 @@
-# Project Name
-
-[Project Instructions](./INSTRUCTIONS.md), this line may be removed once you have updated the README.md
+# To-Do List Tracker
 
 ## Description
+This project allows users to create, complete, and delete tasks. It provides a user friendly interface which runs on a server which communicates and stores tasks in a database.
 
-Your project description goes here. What problem did you solve? How did you solve it?
+_Duration: Weekend Project_
 
-Additional README details can be found [here](https://github.com/PrimeAcademy/readme-template/blob/master/README.md).
+## Usage
+    - Clone files from github
+    - Run 'npm install'
+    - Create a database using the code on database.sql, port: 5432
+    - Get the server running with 'npm start'
+    - Using a web browser go to url: localhost:5000
+    - When finished looking at the project, shut down the server with ctrl + c
+
+## Built With
+Javascript, SQL, Node.js, Express, jQuery, CSS, and HTML.
+
+## Support
+If you have suggestions or issues, please email me at [kelsey.peterson14@gmail.com].

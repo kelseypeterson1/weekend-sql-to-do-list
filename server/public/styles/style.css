@@ -6,9 +6,16 @@ header {
     color: teal;
 }
 
-
 table, td, th {
     border: solid 1px black;
     border-collapse: collapse;
     padding: 10px;
   }
+
+.btn-delete {
+    color: red;
+}
+
+.btn-complete {
+    color: green;
+}
