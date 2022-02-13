@@ -28,6 +28,15 @@ function postTask() {
     });
 }
 
+// determine if task should have a 'complete' or 'delete' button
+function buttonCreation(completeStatus) {
+    if (completeStatus === false) {
+        return '<button class="btn-complete" data-id=${response[i].id}>Complete</button>'
+    } else {
+        return '<button class="btn-delete" data-id=${response[i].id}>Delete</button>'
+    } 
+}
+
 // get tasks from the server
 function getTasks() {
     $("#tasksTable").empty();
@@ -46,11 +55,8 @@ function getTasks() {
                     <td>${response[i].task}</td>
                     <td>${response[i].owner}</td>
                     <td>${formattedDate}</td>
-                    <td>
-                        <button class="btn-delete" data-id=${response[i].id}>Delete</button>
-                    </td>
-                </tr>
-            `);
+                    <td>${buttonCreation(response[i].complete)}</td>
+                </tr>`)
         }
     });
 }
