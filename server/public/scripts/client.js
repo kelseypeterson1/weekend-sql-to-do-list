@@ -1,7 +1,16 @@
-$(function() {
-    console.log("jquery is setup");
+// calling jQuery
+$(readyNow);
+
+// setting up click listeners
+function readyNow() {
+    console.log('jquery is setup');
     getTasks();
-});
+    $('#btn-submit').on('click', addInputs);
+};
+
+function addInputs() {
+    console.log('submit button pressed')
+}
 
 // get tasks from the server
 function getTasks() {
