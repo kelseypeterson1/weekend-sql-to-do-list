@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
     const newTask = req.body;
     const queryText = `
-      INSERT INTO "tasks" ("task", "owner", "date")
+      INSERT INTO "tasks" ("task", "owner", "due")
       VALUES ($1, $2, $3);
     `;
 
