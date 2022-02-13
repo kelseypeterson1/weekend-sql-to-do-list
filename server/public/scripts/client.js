@@ -5,11 +5,27 @@ $(readyNow);
 function readyNow() {
     console.log('jquery is setup');
     getTasks();
-    $('#btn-submit').on('click', addInputs);
+    $('#btn-submit').on('click', postTask);
 };
 
-function addInputs() {
+// send new task to server based on user input
+function postTask() {
     console.log('submit button pressed')
+    let taskObject = {
+        task: $('#task').val(),
+        owner: $('#owner').val(),
+        date: $('#date').val(),
+    }
+    $.ajax({
+        type: 'POST',
+        url: '/task',
+        data: taskObject
+    }).then( function (response) {
+        $('#task').val(''),
+        $('#owner').val(''),
+        $('#date').val(''),
+        getTasks();
+    });
 }
 
 // get tasks from the server
