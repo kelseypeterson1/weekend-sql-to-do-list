@@ -39,7 +39,7 @@ router.put('/:id', (req, res) => {
 
     let sqlText = `
         UPDATE tasks
-        SET status = 'complete'
+        SET complete = 'true'
         WHERE id = $1;
     `
     let sqlValues = [idToUpdate];

@@ -6,6 +6,7 @@ function readyNow() {
     console.log('jquery is setup');
     getTasks();
     $('#btn-submit').on('click', postTask);
+    $('#tasksTable').on('click', '.btn-complete', completeTask);
 };
 
 // send new task to server based on user input
@@ -62,16 +63,18 @@ function getTasks() {
 }
 
 function completeTask() {
+    let id = $(this).closest('tr').data().id
+    console.log(id);
+
     $.ajax({
         method: 'PUT',
         url: `/tasks/${id}`,
         data: {
-            status: complete
+            status: 'complete'
         }
     }).then(function(response) {
         getTasks();
     }).catch(function(err){
         console.log(err);
     })
-
 }
