@@ -15,4 +15,21 @@ router.get('/', (req, res) => {
       });
 });
 
+router.post('/', (req, res) => {
+    const newTask = req.body;
+    const queryText = `
+      INSERT INTO "tasks" ("task", "owner", "date")
+      VALUES ($1, $2, $3);
+    `;
+
+    pool.query(queryText, [newTask.task, newTask.owner, newTask.date])
+      .then((result) => {
+          res.sendStatus(201);
+      })
+      .catch((err) => {
+          console.log('Error querying', queryText, err);
+          res.sendStatus(500);
+      })
+});
+
 module.exports = router;

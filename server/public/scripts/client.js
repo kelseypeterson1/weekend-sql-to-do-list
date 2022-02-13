@@ -18,7 +18,7 @@ function postTask() {
     }
     $.ajax({
         type: 'POST',
-        url: '/task',
+        url: '/tasks',
         data: taskObject
     }).then( function (response) {
         $('#task').val(''),
