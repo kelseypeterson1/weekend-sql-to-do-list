@@ -12,12 +12,12 @@ function readyNow() {
 
 // send new task to server based on user input
 function postTask() {
-    console.log('submit button pressed')
     let taskObject = {
         task: $('#task').val(),
         owner: $('#owner').val(),
         date: $('#date').val(),
     }
+    console.log('submit button pressed, sending:', taskObject)
     $.ajax({
         type: 'POST',
         url: '/tasks',
