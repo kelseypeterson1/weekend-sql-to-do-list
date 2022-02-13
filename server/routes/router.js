@@ -32,4 +32,27 @@ router.post('/', (req, res) => {
       })
 });
 
+router.put('/:id', (req, res) => {
+    let idToUpdate = req.params.id;
+    console.log(idToUpdate);
+    console.log(req.body);
+
+    let sqlText = `
+        UPDATE tasks
+        SET status = 'complete'
+        WHERE id = $1;
+    `
+    let sqlValues = [idToUpdate];
+
+    pool.query(sqlText, sqlValues)
+    .then(result => {
+        res.sendStatus(200);
+    }).catch(err => {
+        console.log(err)
+        res.sendStatus(500);
+    })
+
+})
+
+
 module.exports = router;

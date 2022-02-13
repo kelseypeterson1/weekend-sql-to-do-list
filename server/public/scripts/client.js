@@ -60,3 +60,18 @@ function getTasks() {
         }
     });
 }
+
+function completeTask() {
+    $.ajax({
+        method: 'PUT',
+        url: `/tasks/${id}`,
+        data: {
+            status: complete
+        }
+    }).then(function(response) {
+        getTasks();
+    }).catch(function(err){
+        console.log(err);
+    })
+
+}
