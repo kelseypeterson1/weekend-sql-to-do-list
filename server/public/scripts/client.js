@@ -6,6 +6,8 @@ function readyNow() {
     console.log('jquery is setup');
     getTasks();
     $('#btn-submit').on('click', postTask);
+    $('#tasksTable').on('click', '.btn-complete', completeTask);
+    $('#tasksTable').on('click', '.btn-delete', deleteTask);
 };
 
 // send new task to server based on user input
@@ -28,6 +30,15 @@ function postTask() {
     });
 }
 
+// determine if task should have a 'complete' or 'delete' button
+function buttonCreation(completeStatus) {
+    if (completeStatus === false) {
+        return '<button class="btn-complete" data-id=${response[i].id}>Complete</button>'
+    } else {
+        return '<button class="btn-delete" data-id=${response[i].id}>Delete</button>'
+    } 
+}
+
 // get tasks from the server
 function getTasks() {
     $("#tasksTable").empty();
@@ -46,11 +57,44 @@ function getTasks() {
                     <td>${response[i].task}</td>
                     <td>${response[i].owner}</td>
                     <td>${formattedDate}</td>
-                    <td>
-                        <button class="btn-delete" data-id=${response[i].id}>Delete</button>
-                    </td>
-                </tr>
-            `);
+                    <td>${buttonCreation(response[i].complete)}</td>
+                </tr>`)
         }
     });
+}
+
+// 'complete' button will change status of task in database through the server
+function completeTask() {
+    let id = $(this).closest('tr').data().id
+    console.log(id);
+
+    $.ajax({
+        method: 'PUT',
+        url: `/tasks/${id}`,
+        data: {
+            status: 'complete'
+        }
+    }).then(function(response) {
+        getTasks();
+    }).catch(function(err){
+        console.log(err);
+    })
+}
+
+// 'delete' button will remove task from database through the server
+function deleteTask() {
+    let id = $(this).closest('tr').data().id
+    console.log(id);
+
+    $.ajax({
+        method: 'DELETE',
+        url: `/tasks/${id}`
+    })
+    .then(function(response) {
+        console.log('Task deleted');
+        getTasks();
+    })
+    .catch(function(error) {
+        console.log('Error deleting task', error);
+    })
 }
