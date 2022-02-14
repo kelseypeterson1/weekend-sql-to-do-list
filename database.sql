@@ -2,7 +2,8 @@ CREATE TABLE tasks (
 	id SERIAL,
 	task varchar(250),
 	owner varchar(100),
-	due date
+	due date,
+	complete BOOLEAN DEFAULT false
 );
 
 INSERT INTO "tasks" 
