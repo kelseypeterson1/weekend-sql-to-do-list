@@ -1,7 +1,7 @@
 const pg = require('pg');
 const Pool = pg.Pool;
 const config = {
-  database: 'tasks',
+  database: process.env.DATABASE_NAME || 'tasks',
   host: 'localhost',
   port: 5432,
   max: 10,
