@@ -7,7 +7,7 @@ CREATE TABLE tasks (
 );
 
 INSERT INTO "tasks" 
-	("task", "owner", "due date") 
+	("task", "owner", "due", "complete") 
 VALUES
 	('Clean fridge', 'Kelsey', '2/15/2022', FALSE),
 	('Oil Change', 'Car Elf', '2/28/2022', FALSE),
